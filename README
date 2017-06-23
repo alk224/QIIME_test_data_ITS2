@@ -9,3 +9,18 @@ Data is paired end reads which have been joined.
 I cultured everything myself (7 taxa). One of the taxa I think was contaminated.
 
 Data has 3 reps per community. Use metadata category "Community" for analysis.
+
+---
+
+To use the data, first unpack it. You will find three files.
+
+Unpack command:
+tar -xzvf ITS2_mock_testdata.tar.gz
+
+Files:
+idx_sub.fq (index sequences)
+rd_sub.fq (ITS2 sequences)
+map.ITS.mock.csv (QIIME mapping file in tsv format despite the extension)
+
+The first read on this run was from the LSU end. This means that after quality filtering, you should reverse compliment the reads so they will match against an ITS2 database such as UNITE.
+
