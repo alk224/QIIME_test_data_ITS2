@@ -1,0 +1,11 @@
+Andrew Krohn, June 23, 2017
+
+This is ITS2 mock community data I generated on a MiSeq.
+
+Data has had phix contamination removed.
+
+Data is paired end reads which have been joined.
+
+I cultured everything myself (7 taxa). One of the taxa I think was contaminated.
+
+Data has 3 reps per community. Use metadata category "Community" for analysis.
