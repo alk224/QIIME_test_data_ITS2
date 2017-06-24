@@ -40,7 +40,7 @@ prior to making a decision on how much to trim your reads.
 
 To get you started, follow these instructions:  
 
-- **Step 1:** Save all data in a directory called "raw_data". If you need to start again, you can  
+**Step 1:** Save all data in a directory called "raw_data". If you need to start again, you can  
 just copy out some fresh data. In this example, I will rename the files to something  
 simpler to type at the same time.  
 
@@ -49,42 +49,42 @@ simpler to type at the same time.
     mv idx_sub.fq ./raw_data/idx.fq  
     mv rd_sub.fq ./raw_data/rd.fq  
   
-- **Step 2:** Copy the data out into your working directory.  
+**Step 2:** Copy the data out into your working directory.  
 
     cp ./raw_data/* ./  
 
-- **Step 3:** Check data with fastqc.  
+**Step 3:** Check data with fastqc.  
 
     fastqc rd.fq  
 
 Once the command completes, view the .html file in the output directory.  
 
-- **Step 4:** Trim away the low quality data. Quality starts to decline after 200nt. You could  
+**Step 4:** Trim away the low quality data. Quality starts to decline after 200nt. You could  
 be more thorough and choose a slightly longer length, but we will use 200 here.
 
     fastqx_trimmer -i rd.fq -o rd_200.fq -l 200    
 
-- **Step 5:** Demultiplex and quality filter your data into QIIME.  
+**Step 5:** Demultiplex and quality filter your data into QIIME.  
 
     split_libraries_fastq.py -i rd_200.fq -b idx.fq -m map.txt -o split_libraries  
 
-- **Step 4:** Check the result.  
+**Step 4:** Check the result.  
 
     cat split_libraries/split_library_log.txt  
 
-- **Step 5:** Reverse compliment your output in order to keep orientation with the UNITE  
+**Step 5:** Reverse compliment your output in order to keep orientation with the UNITE  
 database. This will save computational time during domain filtering by ITSx and taxonomic  
 classification.  
 
     adjust_seq_orientation.py -i split_libraries/seqs.fna -o split_libraries/seqs_rc.fna -r  
 
-- **Step 6:** Rename your seqs files so that if using [akutils](https://github.com/alk224/akutils-v1.2), the pick_otus command  
+**Step 6:** Rename your seqs files so that if using [akutils](https://github.com/alk224/akutils-v1.2), the pick_otus command  
 will select the correct file to process.  
 
     mv split_libraries/seqs.fna split_libraries/original_seqs.fna  
     mv split_libraries/seqs_rc.fna split_libraries/seqs.fna  
 
-- **Step 7:** Enter [akutils](https://github.com/alk224/akutils-v1.2) with the pick_otus command. This step presumes you  
+**Step 7:** Enter [akutils](https://github.com/alk224/akutils-v1.2) with the pick_otus command. This step presumes you  
 already have a valid akutils config file in place to reference all of your parameters.  
 For more information, check out the [akutils wiki](https://github.com/alk224/akutils-v1.2/wiki) and [this tutorial](https://github.com/alk224/akutils-v1.2/wiki/Example:-2x300,-2-loci) as it pertains to ITS2  
 sequence data.  
